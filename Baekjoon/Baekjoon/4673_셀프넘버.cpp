@@ -25,13 +25,13 @@ int main()
 		n = 1;
 		while (selfNum[n] == 1)
 			n++;
-		if (n > 10000)
-			break;
 		printf("%d\n", n);
+		if (n == 9993)
+			break;
 	}
 }
 
 
 /*comment*/
 //Recursion func로 시도해봤지만 stack overflow
-//출력초과
+//출력초과  왜?????????? -> 맞았습니다
