@@ -20,3 +20,17 @@
 *.exe
 *.ilk
 *.pdb
+*.pdb
+Baekjoon/.vs/Baekjoon/v15/.suo
+*.db
+*.ipch
+*.vcxproj
+*.filters
+*.obj
+*.log
+*.lastbuildstate
+*.tlog
+*.idb
+*.pdb
+*.exe
+*.ilk
