@@ -23,7 +23,7 @@ int main() {
 					ans[i] += 21;
 				i++;
 			}
-			scanf("%s", msg);
+			scanf("%3s", msg);
 		}
 		printf("%s\n", ans);
 	}
@@ -31,3 +31,4 @@ int main() {
 
 /*comment*/
 //한줄씩 읽는 함수써서 ans 받기
+//왜 한줄씩 안받아지지

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="6064_카잉달력.cpp">
+    <ClCompile Include="2869_달팽이는_올라가고_싶다_X.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
