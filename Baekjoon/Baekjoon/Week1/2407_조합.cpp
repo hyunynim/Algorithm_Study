@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 long long int co1[101][101] = { {1}, {1, 1}, {1, 2, 1}, {1, 3, 3, 1}, {1, 4, 6, 4, 1} };
 long long int co2[101][101] = { 0 };
 

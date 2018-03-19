@@ -18,7 +18,7 @@ int main() {
 
 int comb(int n, int m)
 {
-	int res = 1;
+	double res = 1;
 	if (n == 0 || m == 0 || n == m)
 		return 1;
 	else if (m == 1 || n - m == 1)
@@ -28,6 +28,6 @@ int comb(int n, int m)
 		for (int i = 0; i < n - m; i++)
 			res = res * (double)(n - i) / (double)(i + 1);
 
-		return res;
+		return (int)res;
 	}
 }
