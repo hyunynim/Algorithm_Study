@@ -18,7 +18,7 @@ int main() {
 
 int comb(int n, int m)
 {
-	double res = 1;
+	int res = 1;
 	if (n == 0 || m == 0 || n == m)
 		return 1;
 	else if (m == 1 || n - m == 1)

@@ -1,28 +1,25 @@
-#include<stdio.h>
+#include <iostream>
 
-int root(double n, double r);
+using namespace std;
 
 int main() {
-	int test = 0, n = 0, r = 0, ans = 0;
-	scanf("%d", &test);
+	long long int A = 0;
+	long long int B = 0;
 
-	for (int i = 0; i < test; ++i) {
-		scanf("%d %d", &r, &n);
+	cin >> A;
+	cin >> B;
 
-		ans = root(n, r);
-		printf("%d\n", ans);
+	if (A > B)
+	{
+		cout << (A + B)*(A - B + 1) / 2;
 	}
-}
-
-int root(double n, double r) {
-	int a = 1;
-	if (n == 0 || r == 0 || n == r)
-		return 1;
-	if (r > n - r&&r != n) r = n - r;
-	for (int i = 0; i < r; ++i) {
-		a = a * n / (double)(i+1);
-		n--;
+	else if (B > A)
+	{
+		cout << (A + B)*(B - A + 1) / 2;
 	}
-
-	return a;
+	else
+	{
+		cout << A;
+	}
+	return 0;
 }
