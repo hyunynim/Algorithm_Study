@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main() {
-	char msg[5][16];
+	char msg[5][16] = { 0 };
 	for (int i = 0; i < 5; i++) {
 		scanf("%s", msg[i]);
 	}
@@ -17,3 +17,4 @@ int main() {
 
 /*comment*/
 //왜틀린지를 모르겠음;;;
+//변수 초기화를 안해서 틀림
