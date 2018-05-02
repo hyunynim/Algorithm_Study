@@ -1,55 +1,74 @@
-#include <stdio.h>
+#include <iostream>
 #include <string.h>
-void sort_c(char *msg, int len);
-void c_plus(char *a, int lena, char *b, int lenb, char *res);
-void print_res(char *res);
-int main()
-{
-	char a[10001] = {}, b[10001] = {}, res[10001] = {};//'1' = 49
+#include <stack>
+#define MAX_STRING_LENGTH 10002
+
+using namespace std;
+
+int main() {
+	char a[MAX_STRING_LENGTH], b[MAX_STRING_LENGTH];
+	stack <char> num1, num2, num3;
 	scanf("%s %s", a, b);
-	sort_c(a, strlen(a));
-	sort_c(b, strlen(b));
-	c_plus(a, strlen(a), b, strlen(b), res);
-	print_res(res);
-	return 0;
-}
-void sort_c(char *msg, int len) {
-	for (int i = 0; i < len; i++)
-		*(msg + i) = *(msg + i + 1);
-	*(msg + len) = '\0';
-}
+	int i, j, tmp;
+	int chkNextDegree = 0;
 
-void c_plus(char *a, int lena, char *b, int lenb, char *res) {
-	int r = 0, d = 0, i = 10000;
-	*(res + 10000) = '\0';
-	while ((lena >= 0 || lenb >= 0) && i >= 0) {
-		r = 0;
-		if (lena < 0 && lenb < 0) {
-			*(res + i) = '0';
-			continue;
-		}
+	for (i = 0; a[i] != '\0'; i++)
+		num1.push(a[i] - '0');
 
-		if (lena > 0)
-			r += (*(a + (lena - 1)) - 48);
-		if (lenb > 0)
-			r += (*(b + (lenb - 1)) - 48);
-		r += d;
-		d = r / 10;
-		*(res + i) = r % 10 + 48;
+	for (j = 0; b[j] != '\0'; j++)
+		num2.push(b[j] - '0');
+
+	while (i && j) {
+		tmp = 0;
+		if (i != 0)
+			tmp += num1.top();
+		if (j != 0)
+			tmp += num2.top();
+		if (chkNextDegree == 1)
+			tmp += 1;
+
+		if (num1.top() + num2.top() + chkNextDegree >= 10)
+			chkNextDegree = 1;
+		else
+			chkNextDegree = 0;
+
+		tmp %= 10;
+		num3.push(tmp);
+		
+		if (i != 0)
+			num1.pop();
+		if (j != 0)
+			num2.pop();
 		i--;
-		lena--;
-		lenb--;
+		j--;
+	}
+	while (num1.size()) {
+		num3.push((num1.top() + chkNextDegree)%10);
+		chkNextDegree = num1.top() = (num1.top() + chkNextDegree) / 10;
+		num1.pop();
+	}
+	while (num2.size()) {
+		num3.push((num2.top() + chkNextDegree) % 10);
+		chkNextDegree = num2.top() = (num2.top() + chkNextDegree) / 10;
+		num2.pop();
+	}
+	if (chkNextDegree == 1)
+		num3.push(1);
+	while (num3.size()) {
+		printf("%d", num3.top());
+		num3.pop();
 	}
 }
 
-void print_res(char *res) {
-	int nzero = 0, i = 0;
-	while (*(res + i) != '\0') {
-		if ((*(res + i) <= 48 || *(res + i) > 57) && nzero == 0);
-		else {
-			printf("%c", *(res + i));
-			nzero++;
-		}
-		i++;
-	}
-}
+/*comment*/
+//vector 말고 stack으로 구현
+//갈아엎고 string으로 짬
+//메모리초과 결국 원점
+//Str2Int를 고쳐서 뒤에서부터 되게끔 해야 할 듯;
+//출력초과 ??
+//틀렸습니다 -> 앞에 0나오는 케이스가 있음
+//틀렸습니다
+//갈아엎어
+//다시 갈아엎음
+//문자열로 쎄깐하게
+//배열 사이즈 때문에 틀린거였음;;;

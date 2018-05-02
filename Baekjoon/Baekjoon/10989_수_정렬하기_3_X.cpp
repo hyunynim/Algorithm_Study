@@ -1,22 +1,18 @@
-#include <iostream>
-#include <algorithm>
-#include <vector>
-
-using namespace std;
+#include <cstdio>
 
 int main() {
-	int n, tmp;
-	vector <int> num;
+	int n;
+	int num[10001] = { 0 };
 	scanf("%d", &n);
-	for (int i = 0; i < n; i++) {
+	int tmp;
+	for (int i = 0; i < n; ++i) {
 		scanf("%d", &tmp);
-		num.push_back(tmp);
+		++num[tmp];
 	}
-	sort(num.begin(), num.end());
-	for (int i = 0; num.begin() + i != num.end(); i++)
-		printf("%d\n", num[i]);
-
+	for (int i = 1; i <= 10000; ++i) {
+		if (num[i] != 0) {
+			for (int j = 0; j < num[i]; ++j)
+				printf("%d\n", i);
+		}
+	}
 }
-
-/*comment*/
-//배열의 크기가 커지면 에러뜨는듯

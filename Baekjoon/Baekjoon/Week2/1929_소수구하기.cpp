@@ -4,6 +4,7 @@
 int main() {
 	int m, n;
 	int v_sqrt, chkPrime;
+	int cnt = 0;
 	scanf("%d %d", &m, &n);
 	if (m == n && m == 1)
 		return 0;
@@ -29,7 +30,7 @@ int main() {
 				}
 			}
 			if (chkPrime == 1)
-				printf("%d\n", m);
+				printf("%d, ", m);
 		}
 		++m;
 	}

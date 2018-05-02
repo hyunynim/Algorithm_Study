@@ -19,13 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Example_queue.cpp" />
-    <ClCompile Include="my_QUEUE.cpp" />
-    <ClCompile Include="my_STACK.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="my_QUEUE.h" />
-    <ClInclude Include="my_STACK.h" />
+    <ClCompile Include="15654_N과_M_(5).cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

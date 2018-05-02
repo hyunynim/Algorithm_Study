@@ -1,4 +1,5 @@
 #include "my_QUEUE.h"
+#include <stdio.h>
 /*return val argument*/
 //item: queue에 넣을 data
 //-1 큐 꽉참
@@ -6,7 +7,7 @@
 int QUEUE::Push(int item) {
 	if (size == MAX_QUEUE_SIZE) //큐가 꽉참
 		return -1;
-	else {
+	else {						//큐가 꽉차있지 않으므로 집어넣음
 		data[size] = item;
 		++size;
 		return 1;
@@ -44,4 +45,19 @@ bool QUEUE::Empty() {
 		return TRUE;
 	else
 		return FALSE;
+}
+
+int main() {
+	QUEUE queue;
+	for (int i = 0; i < 10; i++)
+		queue.Push(i);
+	
+	printf("%d %d\n", queue.Size(), queue.Empty());
+	
+	while (!queue.Empty()) {
+		printf("%d\n", queue.Front());
+		queue.Pop();
+	}
+
+	printf("%d %d\n", queue.Size(), queue.Empty());
 }

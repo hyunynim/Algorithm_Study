@@ -1,41 +1,46 @@
-#include <stdio.h>
+#include <iostream>
 
-long long int mul(long long x, long long y, long long p) {
-	long long int ans = 1;
+typedef long long ll;
+const ll p = 1000000007LL;
+ll fac[4000001] = { 1 };
+
+ll pow(ll x, ll y)
+{
+	ll r = 1;
 	while (y > 0) {
-		if (y % 2 != 0) {
-			ans *= x;
-			ans %= p;
+		if (y % 2) {
+			r *= x;
+			r %= p;
 		}
 		x *= x;
 		x %= p;
 		y /= 2;
 	}
-	return ans;
+	return r;
 }
 
-int main() {
-	long long int n, r, p;
-	int m;
-	p = 1000000007LL;
+ll comb(ll n, ll k)
+{
+	ll nf = 1, a = 1;
 
-	scanf("%d", &m);
-	for (int ind = 0; ind < m; ind++) {
-		scanf("%lld %lld", &n, &r);
-		long long int ans = 1, t1 = 1, t2 = 1;
-		for (long long int i = n; i >= n - r + 1; i--) {
-			t1 *= i;
-			t1 %= p;
-		}
-		for (long long int i = 1; i <= r; i++) {
-			t2 *= i;
-			t2 %= p;
-		}
-		long long int t3 = mul(t2, p - 2, p);
-		t3 %= p;
-		ans = t1*t3;
-		ans %= p;
-		printf("%lld\n", ans);
+	nf = fac[n];
+	a = (fac[k] * fac[n - k]) % p;
+
+	return (nf*pow(a, p - 2)) % p;
+
+
+}
+
+int main(void)
+{
+	for (int i = 1; i <= 4000000; ++i)
+		fac[i] = (fac[i - 1] * i) % p;
+	ll n, k;
+	int t;
+	scanf("%d", &t);
+	for (int i = 0; i < t; ++i) {
+		scanf("%lld %lld", &n, &k);
+		printf("%lld\n", comb(n, k));
 	}
 	return 0;
 }

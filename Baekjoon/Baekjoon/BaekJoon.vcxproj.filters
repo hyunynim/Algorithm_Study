@@ -15,22 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Example_queue.cpp">
+    <ClCompile Include="15654_N과_M_(5).cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="my_QUEUE.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="my_STACK.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="my_QUEUE.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="my_STACK.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

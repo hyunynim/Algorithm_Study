@@ -5,50 +5,56 @@
 using namespace std;
 bool isChecked1[1001] = { 0 };
 bool isChecked2[1001] = { 0 };
+bool graph[1001][1001] = { 0 };
 
-void BFS(int ** line, int start, int n)
+void BFS(int start, int n)
 {
 	queue <int> q;
 	q.push(start);
-	int cur = start;
+	int cur;
 	while (1) {
-		printf("%d ", q.front());
-		for (int i = 0; i < n; i++) {
-			if (line[cur][i] == -1)
-				break;
-			if (isChecked1[line[cur][i]] == 1)
-				continue;
-			q.push(line[cur][i]);
-			isChecked1[line[cur][i]] = 1;
+		if (q.size() != 0) {
+			cur = q.front();
+			if (isChecked1[cur]);
+			else
+				printf("%d ", cur);
+			isChecked1[cur] = 1;
+			q.pop();
 		}
-		q.pop();
+
+		for (int i = 1; i <= n; ++i) {
+			if (graph[cur][i] && isChecked1[i] == 0)
+				q.push(i);
+		}
 		if (q.size() == 0)
 			break;
-		cur = q.front();
 	}
+	
 }
-void DFS(int ** line, int start, int n) {
+void DFS(int start, int n) {
 	stack <int> s, tmp;
 	s.push(start);
-	int cur = start;
+	int cur;
 	while (1) {
-		if (isChecked2[s.top()] == 0) {
-			printf("%d ", s.top());
-			isChecked2[s.top()] = 1;
+		if (s.size()) {
+			cur = s.top();
+			if (isChecked2[cur]);
+			else
+				printf("%d ", cur);
+			isChecked2[cur] = 1;
+			s.pop();
 		}
-		s.pop();
-		for (int i = 0; i < n; i++) {
-			if (line[cur][i] == -1)
-				break;
-			tmp.push(line[cur][i]);
+
+		for (int i = 1; i <= n; ++i) {
+			if (graph[cur][i] && isChecked2[i] == 0)
+				tmp.push(i);
 		}
-		while (tmp.size() != 0) {
+		while (tmp.size()) {
 			s.push(tmp.top());
 			tmp.pop();
 		}
 		if (s.size() == 0)
 			break;
-		cur = s.top();
 	}
 }
 
@@ -58,26 +64,23 @@ int main() {
 
 	scanf("%d %d %d", &n, &m, &v);
 
-	int ** line = new int *[n + 1];
-	int * linecnt = new int[n + 1];
-	for (int i = 0; i < n + 1; i++) {
-		linecnt[i] = 0;
-		line[i] = new int[n];
-		for (int j = 0; j < n; j++)
-			line[i][j] = -1;
-	}
-
 	for (int i = 0; i < m; i++) {
 		scanf("%d %d", &start, &finish);
-		line[start][linecnt[start]] = finish;
-		linecnt[start]++;
+		graph[start][finish] = 1;
+		graph[finish][start] = 1;
 	}
 
-	DFS(line, v, n);
+	DFS(v, n);
 	printf("\n");
-	BFS(line, v, n);
+	BFS(v, n);
+
 }
 
 /*comment*/
 //메모리초과 line변수 때문인듯
 //short로 해봤는데 안됨
+//Bool로 관계행렬 짜서 만들어봤지만
+//틀림
+//이래저래 돌려봤는데 잘 안됨..하
+//관계행렬 이용
+//드디어 맞았다!!!!!!!!!!!!
