@@ -26,15 +26,16 @@ void pick(vector <int> &picked, int toPick, int prev) {
 
 int main() {
 	int tmp;
-	for (int i = 0; i < 10; ++i) {
-		scanf("%d", &tmp);
-		seq.push_back(tmp);
-	}/* 문제풀땐 이거로
+//	for (int i = 0; i < 5; ++i) {
+//		scanf("%d", &tmp);
+//		seq.push_back(tmp);
+//	}
 	while (scanf("%d", &tmp) != EOF) {
 		seq.push_back(tmp);
-	}*/
+	}
+	k = seq.back();
+	seq.pop_back();
 	sort(seq.begin(), seq.end());
-	scanf("%d", &k);
 	vector <int> vtmp;
 	pick(vtmp, 2, 0);
 	for (int i = 0; i < res1.size(); ++i) {
@@ -49,3 +50,5 @@ int main() {
 /*comment*/
 //중복case 체크 안함
 //왜틀린지를 모르겠음
+//EOF까지 입력을 받으면 일단 어떤 합과 같은지 까지 vector에 들어가버림
+//그래서 vector의 마지막 요소를 k로 놓고 pop해줘야 함

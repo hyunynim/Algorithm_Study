@@ -1,9 +1,4 @@
-﻿  15654_N과_M_(5).cpp
-d:\tools\2018자료\algorithm_study\baekjoon\baekjoon\15654_n과_m_(5).cpp(22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-d:\tools\2018자료\algorithm_study\baekjoon\baekjoon\15654_n과_m_(5).cpp(23): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-d:\tools\2018자료\algorithm_study\baekjoon\baekjoon\15654_n과_m_(5).cpp(30): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
-d:\tools\2018자료\algorithm_study\baekjoon\baekjoon\15654_n과_m_(5).cpp(42): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1272): note: 'scanf' 선언을 참조하십시오.
-d:\tools\2018자료\algorithm_study\baekjoon\baekjoon\15654_n과_m_(5).cpp(45): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+﻿  15351_인생_점수.cpp
+d:\tools\2018자료\algorithm_study\baekjoon\baekjoon\15351_인생_점수.cpp(5): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\stdio.h(1272): note: 'scanf' 선언을 참조하십시오.
   BaekJoon.vcxproj -> D:\Tools\2018자료\Algorithm_Study\Baekjoon\Debug\BaekJoon.exe
