@@ -1,38 +1,40 @@
-#include <iostream>
-#include <vector>
-
+#include<cstdio>
+#include<vector>
+#include<queue>
+#include<utility>
 using namespace std;
 
-void ch(int & a, int & b) {
-	int tmp = a;
-	a = b;
-	b =tmp;
-}
+vector<int> child[100001];
+int parent[100001] = { 0 };
+bool isChecked[100001] = { 0 };
+int n;
 
-typedef struct Node {
-	vector <Node> * child;
-	int item;
-	Node * parent;
-} node;
 int main() {
-	int n;
-	node head;
-	
-	head.item = 1;
-	head.parent = NULL;
-
 	scanf("%d", &n);
-	int * num = new int[n + 2];
-	for (int i = 0; i < n + 2; i++)
-		num[i] = 0;
-	num[1] = -1;
-
-	int tmp1, tmp2;
-	for (int i = 0; i < n - 1; i++) {
-		scanf("%d %d", &tmp1, &tmp2);
+	for (int i = 0; i < n - 1; ++i) {
+		int a, b;
+		scanf("%d %d", &a, &b);
+		child[a].push_back(b);
+		child[b].push_back(a);
 	}
-	for (int i = 2; i <= n; i++)
-		printf("%d\n", num[i]);
+	queue<pair<int, int>> bfs;
+	for (int i = 0; i < child[1].size(); ++i) {
+		bfs.push(make_pair(1, child[1][i]));
+	}
+	int cur;
+	while (bfs.size()) {
+		cur = bfs.front().second;
+		parent[cur] = bfs.front().first;
+		isChecked[cur] = 1;
+		bfs.pop();
+		for (int i = 0; i < child[cur].size(); ++i) {
+			if (isChecked[child[cur][i]]);
+			else
+				bfs.push(make_pair(cur, child[cur][i]));
+		}
+	}
+	for (int i = 2; i <= n; ++i)
+		printf("%d\n", parent[i]);
 }
 
 /*commnet*/
@@ -49,3 +51,4 @@ int main() {
 //linked list + vector로 어떻게 되려나? -> 트리 직접구현
 //쭉 연결시킨다음 부모 채우기
 //갈아엎자
+//메모리 초과 뜰 줄 알았는데 vector array로 해결;

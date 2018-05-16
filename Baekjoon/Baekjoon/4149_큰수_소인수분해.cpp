@@ -1,41 +1,39 @@
-#include <stdio.h>
-#include <vector>
-
+#include<cstdio>
+#include<vector>
+#include<math.h>
+#include<algorithm>
+typedef long long ll;
 using namespace std;
 
-int main() {
-	long long n;
-	vector <long long> v;
-	v.push_back(2LL);
-
-	int i_min = 0;
-	int i = 0;
-	int isPrime = 0;
-	scanf("%lld", &n);
+void FindPrimeFact(vector<ll> & fact, ll n) {
 	while (n > 1) {
-		while (v.begin() + i != v.end()) {
-
-			if (n % (*(v.begin() + i)) == 0) {
-				printf("%d\n", *(v.begin() + i));
-				n /= *(v.begin() + i);
-			}
-			else
-				i++;
-		}
-
-			for (long long int j = *(v.end() - 1)+1; ; j++) {
+		bool isPrime = 1;
+		for (ll i = 2; i <= (ll)sqrt(n); ++i) {
+			if (n % i == 0) {
+				fact.push_back(i);
+				n /= i;
 				isPrime = 0;
-				for (int k = 0; k < v.size(); k++) {
-					if (j%v[k] == 0) {
-						isPrime = -1;
-					}
-				}
-				if (isPrime != -1) {
-					isPrime = 0;
-					v.push_back(j);
-					break;
-				}
+				break;
 			}
-		
+		}
+		if (isPrime) {
+			fact.push_back(n);
+			return;
+		}
 	}
 }
+
+int main() {
+	ll n;
+	vector<ll> fact;
+	scanf("%lld", &n);
+	FindPrimeFact(fact, n);
+	for (int i = 0; i < fact.size(); ++i)
+		printf("%lld\n", fact[i]);
+}
+
+
+/*comment*/
+//시간초과
+//최악의 경우 2^31까지 진행될수도 있음 
+//따라서 O(sqrt(n))는 시간초과

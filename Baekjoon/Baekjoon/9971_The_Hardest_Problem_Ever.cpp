@@ -14,8 +14,9 @@ int main() {
 		if (strcmp(msg, endofinput) == 0)
 			return 0;
 		else{
+			getchar();
 			int i = 0;
-			gets_s(ans);
+			fgets(ans, 299, stdin);
 			while (ans[i] != '\0') {
 				if (70 <= ans[i] && ans[i] <= 90)
 					ans[i] -= 5;
@@ -25,7 +26,7 @@ int main() {
 			}
 			scanf("%3s", msg);
 		}
-		printf("%s\n", ans);
+		printf("%s", ans);
 	}
 }
 

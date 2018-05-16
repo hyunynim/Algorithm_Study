@@ -4,12 +4,12 @@
 typedef long long ll;
 using namespace std;
 
-bool chkSq[5000000] = { 0 };
+bool chkSq[1000010] = { 0 };
 int main() {
 	ll a, b;
 	scanf("%lld %lld", &a, &b);
-	
-	for(int i = 2; i <= (int)sqrt(b); ++i){
+	int tmp = (ll)sqrt(b);
+	for(ll i = 2; i <= tmp; ++i){
 		ll k = i*i;
 		ll start = ((a - 1) / k + 1)*k;
 		for (ll j = start; j <= b; j += k)

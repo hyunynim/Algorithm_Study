@@ -1,4 +1,5 @@
 #include<cstdio>
+
 typedef long long ll;
 using namespace std;
 ll m, a, c, X, n, g;
@@ -26,6 +27,7 @@ ll pow(ll n, ll m) {
 		}
 		n /= 2;
 	}
+	printf("%lld\n%lld\n", res[0][0], res[1][0]);
 	return ((((X%m)*(res[0][0]%m)) % m) + (((c%m)*(res[1][0]%m)) % m)) % m;
 }
 int main() {
@@ -45,3 +47,4 @@ int main() {
 //          (1 1) 
 //res를 단위행렬로 변경
 //m이 미친듯이 클 경우도 생각해야함. 즉 m이 1E+17 이딴 경우엔 나머지끼리 곱해도 overflow 그래서 계속 틀리는거였음 행렬로 구해도 
+//Java의 BigInteger 이용해서 구현해 봤는데 틀림. 어디가 틀린거지?

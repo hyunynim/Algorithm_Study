@@ -1,41 +1,39 @@
-#include <iostream>
-#include <vector>
-#include <math.h>
-
+#include<cstdio>
+#include<vector>
+#include<algorithm>
+#include<functional>
 using namespace std;
 
-int calcMax(int n, int * price) {
-	if (n == 0)
-		return 0;
-	vector <int> tmp, tmpMax;
-	int max = 0;
-	for (int i = 0; i < n; ++i) {
-		if (price[i] > max) {
-			max = price[i];
-			tmpMax.clear();
-			tmpMax.push_back(i);
+vector <pair<double, int>> price;
+int n, maxPrice = 0;
+
+int Sell(int toPick, int pick, int totPrice) {
+	if (toPick == 0) {
+		return totPrice;
+	}
+	else {
+		for (int i = pick - 1; i >= 1; --i) {
+			if (toPick >= i) {
+				return Sell(toPick - (toPick/i)*i, (toPick / i)*i, totPrice + (toPick / i)* i * price[i].second);
+			}
 		}
-		else if (price[i] == max)
-			tmpMax.push_back(i);
 	}
-	max = 0;
-	for (int i = 0; i < tmpMax.size(); i++) {
-		tmp.push_back(n / (tmpMax[i] + 1)*price[tmpMax[i]] + calcMax(n % (tmpMax[i] + 1), price));
-	}
-	for (int i = 0; i < tmp.size(); i++) {
-		if (tmp[i] > max)
-			max = tmp[i];
-	}
-	return max;
 }
 
 int main() {
-	int n;
 	scanf("%d", &n);
-	int * price = new int[n];
-	for (int i = 0; i < n; i++)
-		scanf("%d", &price[i]);
-	printf("%d", calcMax(n, price));
+	int * res = new int[n + 1];
+	double tmp;
+	price.push_back(make_pair(0.0, 0));
+	for (int i = 1; i <= n; i++) {
+		scanf("%d", &res[i]);
+		tmp = (double)res[i] / (double)(i + 1);
+		price.push_back(make_pair(tmp, res[i]));
+	}
+	sort(price.begin(), price.end());
+	int ans = 0;
+	for (int i = 1; i < price.size(); ++i)
+		printf("%lf %d\n", price[i].first, price[i].second);
 }
 
 /*comment*/

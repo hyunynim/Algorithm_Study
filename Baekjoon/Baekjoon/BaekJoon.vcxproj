@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="15351_인생_점수.cpp" />
+    <ClCompile Include="1197_최소_스패닝_트리%28같은문제_1922_네트워크_연결%29.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
