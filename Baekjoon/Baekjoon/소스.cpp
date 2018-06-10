@@ -1,19 +1,35 @@
-#include <stdio.h>
+#include<cstdio>
+#include<vector>
+#include<algorithm>
+using namespace std;
 
-unsigned long long pow(int a, int n) {
-	unsigned long long res = 1;
-	while (n > 0) {
-		if (n % 2 != 0) {
-			res *= a;
-		}
-		a *= a;
-		n /= 2;
+int n;
+vector<int> wine;
+
+//max value return
+int ChoiceWine(int cnt, int curIndex) {
+	if (curIndex >= n)
+		return 0;
+
+	if (cnt == 2)
+		return ChoiceWine(0, curIndex + 1);
+
+	else if (cnt == 1)
+		return max(ChoiceWine(0, curIndex + 1), ChoiceWine(2, curIndex + 1) + wine[curIndex]);
+
+	else if (cnt == 0) {
+		return max(ChoiceWine(0, curIndex + 1), ChoiceWine(1, curIndex + 1) + wine[curIndex]);
 	}
-	return res;
 }
+
 int main() {
-	int MAX = 4611686018427387904LL;
-	for (int i = 43; i < 2000000000; i = i + 43) {
-		printf("%d \n", i % 25);
+	int tmp;
+	scanf("%d", &n);
+	for (int i = 0; i<n; ++i) {
+		scanf("%d", &tmp);
+		wine.push_back(tmp);
 	}
+	int sum = 0;
+	sum += ChoiceWine(0, 0);
+	printf("%d", sum);
 }

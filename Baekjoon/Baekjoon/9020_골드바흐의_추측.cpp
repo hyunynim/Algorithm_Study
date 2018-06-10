@@ -24,7 +24,7 @@ int main() {
 					res.push_back(make_pair(ABS(prime[k] - prime[j]), make_pair(prime[j], prime[k])));
 					break;
 				}
-			}		
+			}
 			if (prime[j] > prime[k])
 				break;
 		}

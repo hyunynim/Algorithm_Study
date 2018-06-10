@@ -1,7 +1,8 @@
 #include<cstdio>
 #include<utility>
+#include<algorithm>
 using namespace std;
-bool arr[1001][1001] = { 0 };
+int arr[1001][1001] = { 0 };
 
 bool IsRect(pair<int, int> start, int size) {
 	int sx = start.first;
@@ -19,30 +20,24 @@ bool IsRect(pair<int, int> start, int size) {
 int main() {
 	int n, m;
 	scanf("%d %d", &n, &m);
-	for (int i = 0; i < n; ++i) {
-		for (int j = 0; j < m; ++j) {
+	for (int i = 1; i <= n; ++i) {
+		for (int j = 1; j <= m; ++j) {
 			scanf("%1d", &arr[i][j]);
 		}
 	}
-	bool isEnd = 0;
-	int size = n > m ? m : n;
-	for (int k = size; size >= 1; --size) {
-		for (int i = 0; i <= n - size; ++i) {
-			for (int j = 0; j <= m - size; ++j) {
-				if (arr[i][j] && IsRect(make_pair(j, i), size)) {
-					isEnd = 1;
-					break;
-				}
-			}
-			if (isEnd)
-				break;
+	int sizeMax = 0;
+	for (int i = 1; i <= n; ++i) {
+		for (int j = 1; j <= m; ++j) {
+			if (arr[i][j])
+				arr[i][j] = min(min(arr[i - 1][j - 1], arr[i - 1][j]), arr[i][j - 1]) + 1;
+			if (arr[i][j] > sizeMax)
+				sizeMax = arr[i][j];
 		}
-		if (isEnd)
-			break;
 	}
-	printf("%d", size * size);
+	printf("%d", sizeMax*sizeMax);
 }
 
 /*comment*/
 //테두리만 1이 아니라 전체가 다 1이여야 하는 듯 -> IsRect 수정
 //무식하게 풀기 시간초과
+//갈아엎음

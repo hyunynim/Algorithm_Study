@@ -5,7 +5,7 @@
 typedef struct LinkedList {
 	LinkedList * prev;
 	LinkedList * next;
-	int size;
+	static int size;
 	int item;
 } list;
 
@@ -85,6 +85,7 @@ bool Clear(list * head, list * tail) {
 }
 list * SearchItem(list * head, int data) {
 	list * cur = head;
+
 	while (cur->item != data)
 		cur = cur->next;
 	return cur;
