@@ -1,33 +1,40 @@
-#include <stdio.h>
-#include <algorithm>
+#include<cstdio>
+#include<string.h>
+#include<algorithm>
 using namespace std;
 
+#define INF -1e9
+int cache[321][3];
+int score[321];
 int n;
-int dp[305][2];
-int a[305];
-int rec(int x, int y)
-{
-	if (x == 0) {
-		if (y == 1) return a[x];
-		return 0;
-	}
-	if (x == 1 && y == 1) return a[x];
-	int& ret = dp[x][y];
-	if (ret)return ret;
-	if (y) {
-		ret = a[x] + max(rec(x - 2, 1), rec(x - 2, 0));
-	}
+
+int up(int start, int cnt) {
+	if (start >= n)
+		return INF;
+	if (start == n - 1)
+		return score[n - 1];
 	else {
-		ret = a[x] + rec(x - 1, 1);
+		int & ans = cache[start][cnt];
+		if (ans != -1)
+			return ans;
+		
+		ans = score[start];
+		if (cnt < 2)
+			ans = max({ up(start + 1, cnt + 1) + ans, up(start + 2, 1) + ans });
+		else
+			ans += up(start + 2, 1);
+		return ans;
 	}
-	return ret;
 }
-int main()
-{
+
+int main() {
+	memset(cache, -1, sizeof(cache));
 	scanf("%d", &n);
-	for (int i = 0; i<n; ++i)scanf("%d", &a[i]);
-	printf("%d",max(rec(n-1,0),rec(n-1,1)));
+	for (int i = 0; i < n; ++i)
+		scanf("%d", &score[i]);
+	printf("%d", max(up(0, 1), up(1, 1)));
 }
+
 /*comment*/
 //왜 답이 틀리게 나오는지를 모르겠음
 //재귀함수 갈아엎음
@@ -37,4 +44,5 @@ int main()
 //0 -> 2 와 1 -> 2 하면 둘다 n==2 인 상태로 저장됨
 //중복case 제거 필요
 //두개 함수, 두개 cache 이용
-//시간초과 
+//시간초과
+//맨 처음에 첫번째 계단을 밟는 경우 vs 두번째 계단을 밟는 경우

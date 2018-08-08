@@ -10,18 +10,20 @@ vector <pair<int, int>> edges[20001];
 bool isChecked[20001] = { 0 };
 
 int main() {
-	int v, e, k;
+	int v, e, k, numRes;
 
-	scanf("%d %d %d", &v, &e, &k);
+	scanf("%d %d", &v, &e);
 	vector <int> res(v + 1, INF);
 	priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> search;
-	res[k] = 0;
-	isChecked[k] = 1;
+
 	for (int i = 0; i < e; ++i) {
 		int u, v, w;
 		scanf("%d %d %d", &u, &v, &w);
 		edges[u].push_back(make_pair(w, v));
 	}
+	scanf("%d %d", &k, &numRes);
+	res[k] = 0;
+	isChecked[k] = 1;
 	int cur = -1, curDist = 0;
 	search.push(make_pair(0, k));
 	while (search.size()) {
@@ -39,14 +41,15 @@ int main() {
 				search.push(make_pair(curDist + edges[cur][i].first, edges[cur][i].second));
 			}
 		}
-	}
+	}/*
 	for (int i = 1; i < res.size(); ++i) {
 		if (res[i] > 10000000)
 			printf("INF\n");
 		else
 			printf("%d\n", res[i]);
 	}
-
+	*/
+	printf("%d", res[numRes]);
 }
 
 /*comment*/

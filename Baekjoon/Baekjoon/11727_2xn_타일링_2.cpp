@@ -1,10 +1,10 @@
 #include <iostream>
-
+typedef unsigned long long ull;
 using namespace std;
 
-unsigned long long int num[1001] = { 0, 1, 3};
+ull num[1001] = { 0, 1, 3};
 
-unsigned long long int calc(int n) {
+ull calc(int n) {
 	if (num[n] == 0) {
 		if (calc(n - 1) % 10007 + 2*calc(n - 2) % 10007 > 10007)
 			num[n] = (calc(n - 1) + 2*calc(n - 2) % 10007);

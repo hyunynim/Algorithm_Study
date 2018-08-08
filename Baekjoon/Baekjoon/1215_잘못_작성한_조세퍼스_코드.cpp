@@ -15,21 +15,22 @@ int main() {
 	ll n, k;
 	scanf("%lld %lld", &n, &k);
 	ll res = 0;
-	ll i = 1;
-	if (n > k) 
-		res = (n - k)*k;
-	else if (n < k) {
-		while (k / i > n)
-			++i;
-		res = (k%n + (k % ((k / i) + 1))) * (n - (k / i)) / 2 ;
+	int i = 0;
+	for (i = 1; i*i <= n; ++i)
+		res += (k%i);
+
+	int iTmp = n / i;
+	res += k % iTmp;
+	while (1) {
+		int tmp = n / i;
+		if (tmp == 1) {
+			break;
+		}
+		int tmp2 = n % (tmp - 1) == 0 ? n / (tmp - 1) - 1 : n / (tmp - 1);
+		res += (tmp2 - i + 1)*(k%i - k % tmp2) / 2;
+		res += (tmp2 - i)*tmp;
+		i = tmp2;
 	}
-	for (; k/i != (k/(i+1)+1)  ; ++i) {
-		ll first = k % (k / i);
-		ll last = k % (k / (i + 1) + 1);
-		res += (first + last)*((k / i) - (k / (i + 1))) / 2;
-	}
-	for (int j = 2; j <= k / (i); ++j)
-		res += k % j;
 	printf("%lld", res);
 }
 

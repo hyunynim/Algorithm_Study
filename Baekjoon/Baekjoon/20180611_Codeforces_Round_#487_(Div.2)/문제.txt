@@ -1,0 +1,26 @@
+A
+풍경은 row cell에 연속적으로 표현 가능
+각각은 coloour amber의 꽃 or buff 또는 canary yellow 또는 비어있다
+양쪽에 뿌림
+
+ABC.이 주어짐
+세 색이 존재할수있니?
+
+B
+0,1, . 으로 이루어진 s가 주어짐
+low tied = 0
+high tide = 1
+unknown = .(h or l)
+
+.이 0또는 1로 바꾸었을때
+모든 i와 i+p가 다른게 하나라도 있으면 됨... 문제 계속 잘못 읽고 있었음
+
+
+n과 p
+n은 스트링 길이, p는 period
+
+C
+네 종류의 꽃, A, B, C, D
+nxm grid에 나무 나타냄
+각 셀은 1개의 꽃만 있음
+a,b,c,d가 주어졌을때 a,b,c,d가 각 꽃의 component 수인 경우를 찾아라

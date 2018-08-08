@@ -3,13 +3,24 @@
 #include<algorithm>
 
 using namespace std;
+vector<int> seq;
+vector<pair<int, int>> uSeq;
 
+int bSearch(int left, int right, int dat) {
+	if (left > right)
+		return -1;
+	int mid = (left + right) / 2;
+	if (uSeq[mid].first > dat)
+		return bSearch(left, mid - 1, dat);
+	else if (uSeq[mid].first < dat)
+		return bSearch(mid + 1, right, dat);
+	else if (uSeq[mid].first == dat)
+		return mid;
+}
 
 int main() {
 	int n, tmp;
 	scanf("%d", &n);
-	vector<int> seq;
-	vector<int> uSeq, uSeqCnt;
 	
 	for (int i = 0; i < n; ++i) {
 		scanf("%d", &tmp);
@@ -26,30 +37,23 @@ int main() {
 			cnt++;
 		}
 		else {
-			uSeq.push_back(tmp);
-			uSeqCnt.push_back(cnt);
+			uSeq.push_back({ tmp, cnt });
 			cnt = 1;
 			tmp = seq[i];
 		}
 	}
-	if (tmp != uSeq.back()) {
-		uSeq.push_back(tmp);
-		uSeqCnt.push_back(cnt);
-	}
-
-	vector<int>::iterator vPtr;
+	uSeq.push_back({ tmp, cnt });
+	int vSize = uSeq.size() - 1;
+	int index;
 	for (int i = 0; i < m; ++i) {
-		int cnt = 0;
-		scanf("%d", &tmp);
-		vPtr = find(uSeq.begin(), uSeq.end(), tmp);
-		if (vPtr == uSeq.end())
+		scanf("%d", &n);
+		index = bSearch(0, vSize, n);
+		if (index != -1)
+			printf("%d ", uSeq[index].second);
+		else
 			printf("0 ");
-		else {
-			cnt = vPtr - uSeq.begin();
-			printf("%d ", uSeqCnt[cnt]);
-		}
+		
 	}
-	
 }
 
 /*comment*/
@@ -58,3 +62,4 @@ int main() {
 //이진탐색 후 갯수 세아리기 시간초과
 //처음 입력받은거 정렬 후 개수 세서 압축
 //시간초과
+//ok

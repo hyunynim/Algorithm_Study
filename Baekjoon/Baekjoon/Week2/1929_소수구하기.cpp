@@ -2,9 +2,10 @@
 #include <math.h>
 
 int main() {
+	freopen("input.txt", "w", stdout);
 	int m, n;
 	int v_sqrt, chkPrime;
-	int cnt = 0;
+	int cnt = 1;
 	scanf("%d %d", &m, &n);
 	if (m == n && m == 1)
 		return 0;
@@ -29,11 +30,16 @@ int main() {
 					break;
 				}
 			}
-			if (chkPrime == 1)
+			if (chkPrime == 1) {
 				printf("%d, ", m);
+				++cnt;
+				if (cnt == 500000)
+					return 0;
+			}
 		}
 		++m;
 	}
+	printf("%d", cnt);
 }
 
 /*comment*/

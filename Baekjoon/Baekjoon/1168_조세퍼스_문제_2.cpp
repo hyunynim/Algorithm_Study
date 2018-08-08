@@ -1,57 +1,31 @@
-#include <iostream>
-#include<deque>
-#include <queue>
+#include<cstdio>
+#include<vector>
 
 using namespace std;
 
 int main() {
-	int n, m;
-	deque <int> people;
-	scanf("%d %d", &n, &m);
+	int n, k;
+	scanf("%d %d", &n, &k);
+	vector<int> seq;
 	for (int i = 0; i < n; i++)
-		people.push_back(i + 1);
-	int k = 1;
-	printf("<");
-	int size = people.size();
-	while (people.size() > 1) {
-		if (size >= m) {
-			if (m < size - m) {
-				for (int i = 0; i < m - 1; ++i) {
-					people.push_back(people.front());
-					people.pop_front();
-				}
-				printf("%d, ", people.front());
-				people.pop_front();
-			}
-			else {
-				for (int i = 0; i < size - m; ++i) {
-					people.push_front(people.back());
-					people.pop_back();
-				}
-				printf("%d, ", people.back());
-				people.pop_back();
-			}
-		}
-		else {
-			int tmp = m % size;
-			if (tmp < size - tmp) {
-				for (int i = 0; i < tmp - 1; ++i) {
-					people.push_back(people.front());
-					people.pop_front();
-				}
-				printf("%d, ", people.front());
-				people.pop_front();
-			}
-			else {
-				for (int i = 0; i < size - tmp; ++i) {
-					people.push_front(people.back());
-					people.pop_back();
-				}
-				printf("%d, ", people.back());
-				people.pop_back();
-			}
-		}
-		size = people.size();
+		seq.push_back(i + 1);
+	if (n == 1) {
+		printf("<1>");
+		return 0;
 	}
-	printf("%d>", people.front());
+	printf("<%d, ", seq[k-1]);
+	int cnt = k - 1;
+	seq.erase(seq.begin() + cnt);
+	while (seq.size() != 1) {
+		cnt += k;
+		--cnt;
+		cnt %= seq.size();
+		printf("%d, ", seq[cnt]);
+		seq.erase(seq.begin() + cnt);
+	}
+
+
+	printf("%d>", seq[0]);
 }
+/*comment*/
+//n == 1 인 case 예외처리

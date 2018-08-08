@@ -1,10 +1,10 @@
-#include <iostream>
-#include <string.h>
+#include<cstdio>
+#include<string.h>
 
 int cache[1001], num[1001];
 
 int n;
-int Lis(int);
+int Lds(int);
 int max(int a, int b) {
 	return a > b ? a : b;
 }
@@ -17,12 +17,12 @@ int main() {
 	}
 	int res = 0;
 	for (int i = 0; i < n; ++i) {
-		res = max(res, Lis(i));
+		res = max(res, Lds(i));
 	}
 	printf("%d", res);
 }
 
-int Lis(int start) {
+int Lds(int start) {
 	int& ref = cache[start];
 	if (start >= n)
 		return 0;
@@ -32,7 +32,7 @@ int Lis(int start) {
 		ref = 1;
 		for (int i = start + 1; i < n; ++i) {
 			if (num[start] > num[i])
-				ref = max(ref, Lis(i) + 1);
+				ref = max(ref, Lds(i) + 1);
 		}
 		return ref;
 	}

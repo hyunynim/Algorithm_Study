@@ -14,7 +14,9 @@ int pow(int n, int p) {
 }
 
 int main() {
-	int t, ans, calc, n, k, mul[13] = { 0, 1, 6, 31, 156, 781,3906,19531,97656,488281,2441406,12207031,61035156 };
+	int t, ans, calc, n, k, mul[13] = { 0 };
+	for (int i = 1; i < 12; ++i) 
+		mul[i] = mul[i - 1] + pow(5, i - 1);
 	scanf("%d", &t);
 	for (int i = 0; i < t; i++) {
 		ans = 0;
