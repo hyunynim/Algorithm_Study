@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+typedef long long ll;
+typedef tuple<ll, ll, ll> T;
+typedef pair<ll, ll> P;
+const double pi = 3.14159265;
+bool ccw(P a, P b){
+        return (a.first * b.second - a.second * b.first) > 0;
+}
+double length(P v){
+        return sqrt((double)v.first * v.first + (double)v.second * v.second);
+}
+double r2d(double r){
+        return r * 180 / pi;
+}
+double getDegree(P a, P b){
+        if(a == b) return 360.0;
+        if(a.first == -b.first && a.second == -b.second) return 180.0;
+        double l = length(a) * length(b);
+        double res = a.first * b.first / l + a.second * b.second / l;
+
+        res = r2d(acos(res));
+        return res + ((ccw(a, b) > 0) ? 0.0 : 180.0);
+}
+int main(){
+        int n;
+        scanf("%d", &n);
+        priority_queue<T> q;
+        ll len = 0;
+        for(int i = 0; i<n; ++i){
+                ll a,b,c;
+                scanf("%lld %lld", &a, &b);
+                c = a * a + b * b;
+                q.push({c, a, b});
+                len = max(len, c);
+        }
+
+        vector<double> deg;
+        while(q.size()){
+                ll a, b, c;
+                tie(a, b, c) = q.top();
+                if(a != len) break;
+                double pb = atan2((double)c, (double)b) * 180.0 / pi;
+                deg.push_back(pb < 0.0 ? pb + 360.0 : pb);
+                q.pop();
+        }
+        sort(deg.begin(), deg.end());
+        if(deg.size() == 1){ printf("360.000000"); return 0;}
+        double ans = deg[0] - deg.back() + 360.0;
+        for(int i = 0; i<deg.size() - 1; ++i)
+                ans = max(ans, deg[i+1] - deg[i]);
+        printf("%.7lf", ans);
+}
