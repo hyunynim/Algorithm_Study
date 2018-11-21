@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+        string str, f;
+        cin >> str >> f;
+        stack<char> s;
+        for(int i = 0; i<str.size(); ++i){
+                s.push(str[i]);
+                if(s.top() == f.back()){
+                        string tmp = "";
+                        for(int j = 0; s.size() && j < f.size(); ++j){
+                                tmp += s.top();
+                                s.pop();
+                        }
+                        reverse(tmp.begin(), tmp.end());
+                        if(tmp != f){
+                                for(int j = 0; j<tmp.size(); ++j)
+                                        s.push(tmp[j]);
+                        }
+                }
+        }
+        string ans = "";
+        if(s.empty()){printf("FRULA"); return 0;}
+        while(s.size()){ ans += s.top(); s.pop();}
+        reverse(ans.begin(), ans.end());
+        cout << ans;
+}
